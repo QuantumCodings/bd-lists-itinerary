@@ -2,6 +2,7 @@ package com.amazon.ata.lists;
 
 import com.amazon.ata.resources.lists.prework.Destination;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class Itinerary {
         throw new IndexOutOfBoundsException("Position not in range");
     }
         // Implement the method here
-        return null;
+
     }
 
     /**
@@ -64,7 +65,7 @@ public class Itinerary {
     public List<String> getListOfLocations() {
          List<String> locations = new ArrayList<>();
     for (Destination destination : destinations) {
-        locations.add(destination.getCity()); // Assuming `getCity()` method exists in `Destination`
+        locations.add(destination.getLocation());
     }
     return locations;
     }
@@ -78,7 +79,7 @@ public class Itinerary {
     public int getTotalNumberOfDays() {
         int totalDays = 0;
     for (Destination destination : destinations) {
-        totalDays += destination.getDays(); // Assuming `getDays()` method exists in `Destination`
+        totalDays += destination.getDaysAtLocation();
     }
     return totalDays;
     }
