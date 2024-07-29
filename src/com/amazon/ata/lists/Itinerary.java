@@ -10,12 +10,16 @@ import java.util.List;
  * and get the total number of days that will be spent in trip.
  */
 public class Itinerary {
+    private List<Destination> destinations = new ArrayList<>();
     /**
      * Add a new destination to the end of itinerary.
      *
      * @param destination destination to add to itinerary
      */
     public void addDestination(Destination destination) {
+        if (destination != null) {
+        destinations.add(destination);
+    }
         // Implement the method here
     }
 
@@ -26,6 +30,11 @@ public class Itinerary {
      * @return Destination at position.
      */
     public Destination getDestination(int position) {
+        if (position >= 0 && position < destinations.size()) {
+        return destinations.get(position);
+    } else {
+        throw new IndexOutOfBoundsException("Position not in range");
+    }
         // Implement the method here
         return null;
     }
@@ -38,7 +47,11 @@ public class Itinerary {
      */
     public Destination removeDestination(int position) {
         // Implement the method here
-        return null;
+        if (position >= 0 && position < destinations.size()) {
+        return destinations.remove(position);
+    } else {
+        throw new IndexOutOfBoundsException("Position not in range");
+    }
     }
 
 
@@ -49,8 +62,11 @@ public class Itinerary {
      * @return full list of locations from itinerary.
      */
     public List<String> getListOfLocations() {
-        // Implement the method here
-        return null;
+         List<String> locations = new ArrayList<>();
+    for (Destination destination : destinations) {
+        locations.add(destination.getCity()); // Assuming `getCity()` method exists in `Destination`
+    }
+    return locations;
     }
 
     /**
@@ -60,8 +76,11 @@ public class Itinerary {
      * @return total number of days spent in all locations.
      */
     public int getTotalNumberOfDays() {
-        // Implement the method here
-        return -1;
+        int totalDays = 0;
+    for (Destination destination : destinations) {
+        totalDays += destination.getDays(); // Assuming `getDays()` method exists in `Destination`
+    }
+    return totalDays;
     }
 
     /**
@@ -71,6 +90,6 @@ public class Itinerary {
      */
     public int getNumberOfDestinations() {
         // Implement the method here
-        return -1;
+         return destinations.size();
     }
 }
